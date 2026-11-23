@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
         "app.seed-demo-data=false"
 })
 @AutoConfigureMockMvc
-public abstract class IntegrationTest {
+public abstract class ApiTestBase {
 
     @Autowired
     protected MockMvcTester mvc;

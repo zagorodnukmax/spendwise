@@ -1,11 +1,11 @@
 package com.spendwise.transaction;
 
-import com.spendwise.support.IntegrationTest;
+import com.spendwise.support.ApiTestBase;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class TransactionIntegrationTest extends IntegrationTest {
+class TransactionApiTest extends ApiTestBase {
 
     private static final String COFFEE = """
             {"amount":95,"type":"EXPENSE","description":"Coffee","date":"2026-11-03"}

@@ -1,11 +1,11 @@
 package com.spendwise.category;
 
-import com.spendwise.support.IntegrationTest;
+import com.spendwise.support.ApiTestBase;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CategoryIntegrationTest extends IntegrationTest {
+class CategoryApiTest extends ApiTestBase {
 
     @Test
     void createUpdateAndUseCustomCategoryForAutoCategorization() {

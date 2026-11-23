@@ -1,12 +1,12 @@
 package com.spendwise;
 
-import com.spendwise.support.IntegrationTest;
+import com.spendwise.support.ApiTestBase;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /** Happy path through the whole app: register → bearer token → auto-categorized expense → summary. */
-class SpendwiseApplicationTests extends IntegrationTest {
+class EndToEndApiTest extends ApiTestBase {
 
     @Test
     void registerThenUseBearerTokenAndAutoCategorize() {

@@ -1,11 +1,11 @@
 package com.spendwise.auth;
 
-import com.spendwise.support.IntegrationTest;
+import com.spendwise.support.ApiTestBase;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AuthIntegrationTest extends IntegrationTest {
+class AuthApiTest extends ApiTestBase {
 
     @Test
     void registerReturnsBearerTokenAndUser() {

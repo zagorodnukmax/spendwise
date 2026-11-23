@@ -11,6 +11,17 @@ A small personal-finance tracker: log income and expenses, see a monthly summary
 | Auth     | Stateless JWT **Bearer** tokens (HS256, Spring OAuth2 Resource Server)|
 | Frontend | Angular 22 (standalone components, signals, zoneless, lazy routes)    |
 
+## Access (local)
+
+| What | URL | Login |
+|---|---|---|
+| **Web app** | http://localhost:4200 | `demo@spendwise.dev` / `demo12345` — or create your own account with *Register* |
+| REST API | http://localhost:8080/api | Bearer token from `POST /api/auth/login` (see [API](#api)) |
+| H2 database console | http://localhost:8080/h2-console | JDBC URL `jdbc:h2:file:./data/spendwise`, user `sa`, password empty |
+
+The demo account is created automatically on the first start (`app.seed-demo-data=true`) with sample
+transactions for the current month. These are local development credentials only.
+
 ## How auth works
 
 1. `POST /api/auth/register` or `POST /api/auth/login` returns `{ accessToken, tokenType: "Bearer", expiresAt, user }`.
@@ -41,15 +52,17 @@ npm start
 ```
 Open http://localhost:4200. `/api` is proxied to the backend (`proxy.conf.json`).
 
-**Demo account:** `demo@spendwise.dev` / `demo12345` (created on first start with sample data).
-
-**H2 console:** http://localhost:8080/h2-console — JDBC URL `jdbc:h2:file:./data/spendwise`, user `sa`, empty password.
+Log in with `demo@spendwise.dev` / `demo12345` (see [Access](#access-local)).
 
 ### Tests
-```bash
-cd backend && ./mvnw test                 # 33 tests: unit + HTTP integration on in-memory H2
-cd frontend && npx ng test --watch=false  # 24 tests: auth service, interceptor, guards, API
-```
+
+| Kind | Command | What runs |
+|---|---|---|
+| Unit + API (fast) | `cd backend && ./mvnw test` | 33 tests: services with mocks; HTTP endpoints through MockMvc on in-memory H2 |
+| **Integration** | `cd backend && ./mvnw verify` | the above **+ 9 `*IT` tests**: the app starts on a random port and is called over real HTTP (Tomcat, security filters, CORS, H2 console, demo account) |
+| Frontend | `cd frontend && npx ng test --watch=false` | 24 tests: auth service, interceptor, guards, API |
+
+In IntelliJ: right-click `src/test/java` → *Run 'All Tests'*, or open the Maven tool window → *Lifecycle → verify*.
 A detailed description of the logic (auth flow, auto-categorization, summary, tests) is in [LOGIC.md](LOGIC.md).
 
 ## API
