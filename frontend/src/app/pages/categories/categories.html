@@ -1,0 +1,56 @@
+<div class="layout">
+  <section class="card">
+    <h3>{{ editingId() ? 'Edit category' : 'New category' }}</h3>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="row">
+        <label class="grow">
+          Name
+          <input formControlName="name" placeholder="e.g. Pets" />
+        </label>
+        <label>
+          Color
+          <input formControlName="color" type="color" class="color" />
+        </label>
+      </div>
+      <label>
+        Keywords (comma-separated)
+        <input formControlName="keywords" placeholder="vet, zoo, pet food" />
+      </label>
+      <p class="muted hint">
+        When a transaction has no category, Spendwise picks the one whose keywords appear in its description.
+      </p>
+      @if (error(); as e) {
+        <p class="error">{{ e }}</p>
+      }
+      <div class="actions">
+        <button type="submit">{{ editingId() ? 'Save' : 'Add' }}</button>
+        @if (editingId()) {
+          <button type="button" class="ghost" (click)="reset()">Cancel</button>
+        }
+      </div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h3>Your categories</h3>
+    @for (c of categories(); track c.id) {
+      <div class="cat">
+        <span class="dot" [style.background]="c.color"></span>
+        <div class="info">
+          <strong>{{ c.name }}</strong>
+          <div class="kws">
+            @for (k of keywordList(c); track k) {
+              <span class="kw">{{ k }}</span>
+            } @empty {
+              <span class="muted">no keywords</span>
+            }
+          </div>
+        </div>
+        <button class="ghost small" (click)="edit(c)">Edit</button>
+        <button class="danger" (click)="remove(c)" aria-label="Delete">✕</button>
+      </div>
+    } @empty {
+      <p class="muted">No categories yet.</p>
+    }
+  </section>
+</div>

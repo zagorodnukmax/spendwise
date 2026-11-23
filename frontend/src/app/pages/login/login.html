@@ -1,0 +1,41 @@
+<section class="wrap">
+  <div class="card">
+    <h1>💸 Spendwise</h1>
+    <p class="muted">Track your spending. Categories are picked automatically from the description.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      @if (mode() === 'register') {
+        <label>
+          Name
+          <input formControlName="displayName" autocomplete="name" />
+        </label>
+      }
+      <label>
+        Email
+        <input formControlName="email" type="email" autocomplete="email" />
+      </label>
+      <label>
+        Password
+        <input formControlName="password" type="password" autocomplete="current-password" />
+        @if (form.controls.password.touched && form.controls.password.invalid) {
+          <span class="error">At least 8 characters</span>
+        }
+      </label>
+
+      @if (error(); as e) {
+        <p class="error">{{ e }}</p>
+      }
+
+      <button type="submit" [disabled]="loading()">
+        {{ mode() === 'login' ? 'Log in' : 'Create account' }}
+      </button>
+    </form>
+
+    <button class="link" type="button" (click)="toggleMode()">
+      {{ mode() === 'login' ? "No account? Register" : 'Already have an account? Log in' }}
+    </button>
+    @if (mode() === 'login') {
+      <p class="hint muted">Demo: demo&#64;spendwise.dev / demo12345</p>
+    }
+  </div>
+</section>

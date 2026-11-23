@@ -1,0 +1,16 @@
+@if (auth.user(); as user) {
+  <header class="topbar">
+    <a routerLink="/" class="brand">💸 Spendwise</a>
+    <nav>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+      <a routerLink="/categories" routerLinkActive="active">Categories</a>
+    </nav>
+    <div class="user">
+      <span>{{ user.displayName }}</span>
+      <button class="ghost" (click)="auth.logout()">Log out</button>
+    </div>
+  </header>
+}
+<main>
+  <router-outlet />
+</main>

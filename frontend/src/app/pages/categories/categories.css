@@ -1,0 +1,13 @@
+.layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 16px; align-items: start; }
+form { display: flex; flex-direction: column; gap: 12px; }
+.row { display: flex; gap: 12px; }
+.grow { flex: 1; }
+.color { width: 56px; height: 40px; padding: 2px; }
+.hint { font-size: 13px; margin: 0; }
+.actions { display: flex; gap: 8px; }
+.cat { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--border); }
+.info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.kws { display: flex; flex-wrap: wrap; gap: 4px; font-size: 12px; }
+.kw { background: var(--bg); border: 1px solid var(--border); padding: 1px 8px; border-radius: 999px; }
+button.small { padding: 4px 10px; font-weight: 500; }
+@media (max-width: 760px) { .layout { grid-template-columns: 1fr; } }

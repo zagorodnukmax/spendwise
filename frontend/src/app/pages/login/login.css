@@ -1,0 +1,5 @@
+.wrap { display: grid; place-items: center; min-height: 80vh; }
+.card { width: 100%; max-width: 400px; }
+form { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+.link { background: none; color: var(--accent); padding: 12px 0 0; font-weight: 500; }
+.hint { font-size: 13px; margin: 8px 0 0; }

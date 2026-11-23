@@ -1,0 +1,21 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.brand { font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
+nav { display: flex; gap: 4px; flex: 1; }
+nav a { padding: 6px 12px; border-radius: 8px; color: var(--muted); text-decoration: none; }
+nav a.active, nav a:hover { background: var(--accent-soft); color: var(--accent); }
+.user { display: flex; align-items: center; gap: 12px; color: var(--muted); }
+main { max-width: 1040px; margin: 0 auto; padding: 24px 16px; }
+@media (max-width: 600px) {
+  .topbar { flex-wrap: wrap; gap: 8px; padding: 12px 16px; }
+  .user span { display: none; }
+}
