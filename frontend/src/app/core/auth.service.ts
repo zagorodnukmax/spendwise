@@ -55,7 +55,13 @@ export class AuthService {
 function readSession(): Session | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as Session) : null;
+    const session = raw ? (JSON.parse(raw) as Session) : null;
+    // An expired token is not a session: drop it so the UI never shows a "logged in" header on /login.
+    if (session && !(new Date(session.expiresAt).getTime() > Date.now())) {
+      localStorage.removeItem(STORAGE_KEY);
+      return null;
+    }
+    return session;
   } catch {
     return null;
   }
